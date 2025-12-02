@@ -1,8 +1,3 @@
-/*
- * @Author       : mark // 原作者信息
- * @Date         : 2020-06-26 // 创建日期
- * @copyleft Apache 2.0 // 许可证说明
- */ 
 #include "buffer.h" // 引入 Buffer 类的头文件
 
 Buffer::Buffer(int initBuffSize) : buffer_(initBuffSize), readPos_(0), writePos_(0) {} // 构造函数：初始化缓冲区大小以及读写位置
