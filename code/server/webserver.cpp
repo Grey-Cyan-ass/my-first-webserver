@@ -221,7 +221,7 @@ bool WebServer::InitSocket_() {
     addr.sin_port = htons(port_);
     struct linger optLinger = { 0 };
     if(openLinger_) {
-        /* 优雅关闭: 直到所剩数据发送完毕或超时 */
+        //优雅关闭:
         optLinger.l_onoff = 1;
         optLinger.l_linger = 1;
     }
