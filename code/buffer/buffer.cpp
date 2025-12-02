@@ -1,8 +1,3 @@
-/*
- * @Author       : mark // 原作者信息
- * @Date         : 2020-06-26 // 创建日期
- * @copyleft Apache 2.0 // 许可证说明
- */ 
 #include "buffer.h" // 引入 Buffer 类的头文件
 
 Buffer::Buffer(int initBuffSize) : buffer_(initBuffSize), readPos_(0), writePos_(0) {} // 构造函数：初始化缓冲区大小以及读写位置
@@ -13,10 +8,10 @@ size_t Buffer::ReadableBytes() const { // 返回当前可读字节数
 size_t Buffer::WritableBytes() const { // 返回当前可写字节数
     return buffer_.size() - writePos_; // 可写区间为 [writePos_, buffer_.size())
 }
-
 size_t Buffer::PrependableBytes() const { // 返回已读区域大小（可前置写入的空间）
     return readPos_; // 已经读取过的数据之前的空间
 }
+
 
 const char* Buffer::Peek() const { // 获取当前读指针（只读）
     return BeginPtr_() + readPos_; // 指向可读区域的起始位置
