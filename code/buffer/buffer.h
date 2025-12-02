@@ -2,9 +2,9 @@
 #define BUFFER_H
 #include <cstring>   //perror
 #include <iostream>
-#include <unistd.h>  // write
-#include <sys/uio.h> //readv
-#include <vector> //readv
+#include <unistd.h>  
+#include <sys/uio.h> 
+#include <vector> 
 #include <atomic>
 #include <assert.h>
 class Buffer {
