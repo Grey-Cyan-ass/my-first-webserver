@@ -1,9 +1,3 @@
-/*
- * @Author       : mark
- * @Date         : 2020-06-17
- * @copyleft Apache 2.0
- */
-
 #include "webserver.h"
 
 using namespace std;
@@ -75,15 +69,6 @@ void WebServer::InitEventMode_(int trigMode) {
 }
 
 void WebServer::Start() {
-    int timeMS = -1;  /* epoll wait timeout == -1 无事件将阻塞 */
-    if(!isClose_) { LOG_INFO("========== Server start =========="); }
-    while(!isClose_) {
-        if(timeoutMS_ > 0) {
-            timeMS = timer_->GetNextTick();
-        }
-        int eventCnt = epoller_->Wait(timeMS);
-        for(int i = 0; i < eventCnt; i++) {
-            /* 处理事件 */
             int fd = epoller_->GetEventFd(i);
             uint32_t events = epoller_->GetEvents(i);
             if(fd == listenFd_) {
@@ -192,15 +177,6 @@ void WebServer::OnWrite_(HttpConn* client) {
     int writeErrno = 0;
     ret = client->write(&writeErrno);
     if(client->ToWriteBytes() == 0) {
-        /* 传输完成 */
-        if(client->IsKeepAlive()) {
-            OnProcess(client);
-            return;
-        }
-    }
-    else if(ret < 0) {
-        if(writeErrno == EAGAIN) {
-            /* 继续传输 */
             epoller_->ModFd(client->GetFd(), connEvent_ | EPOLLOUT);
             return;
         }
@@ -208,39 +184,6 @@ void WebServer::OnWrite_(HttpConn* client) {
     CloseConn_(client);
 }
 
-/* Create listenFd */
-bool WebServer::InitSocket_() {
-    int ret;
-    struct sockaddr_in addr;
-    if(port_ > 65535 || port_ < 1024) {
-        LOG_ERROR("Port:%d error!",  port_);
-        return false;
-    }
-    addr.sin_family = AF_INET;
-    addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    addr.sin_port = htons(port_);
-    struct linger optLinger = { 0 };
-    if(openLinger_) {
-        //优雅关闭:
-        optLinger.l_onoff = 1;
-        optLinger.l_linger = 1;
-    }
-
-    listenFd_ = socket(AF_INET, SOCK_STREAM, 0);//IPV4协议，TCP协议socket
-    if(listenFd_ < 0) {
-        LOG_ERROR("Create socket error!", port_);
-        return false;
-    }
-
-    ret = setsockopt(listenFd_, SOL_SOCKET, SO_LINGER, &optLinger, sizeof(optLinger));
-    if(ret < 0) {
-        close(listenFd_);
-        LOG_ERROR("Init linger error!", port_);
-        return false;
-    }
-
-    int optval = 1;
-    /* 只有最后一个套接字会正常接收数据。 */
     ret = setsockopt(listenFd_, SOL_SOCKET, SO_REUSEADDR, (const void*)&optval, sizeof(int));
     if(ret == -1) {
         LOG_ERROR("set socket setsockopt error !");

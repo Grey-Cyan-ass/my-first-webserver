@@ -1,19 +1,19 @@
 #ifndef BUFFER_H
 #define BUFFER_H
-#include <cstring>   //perror
+#include <cstring>
 #include <iostream>
-#include <unistd.h>  
-#include <sys/uio.h> 
-#include <vector> 
+#include <unistd.h>
+#include <sys/uio.h>
+#include <vector>
 #include <atomic>
 #include <assert.h>
 class Buffer {
 public:
-    Buffer(int initBuffSize = 1024); 
+    Buffer(int initBuffSize = 1024);
     ~Buffer() = default;
 
     size_t ReadableBytes() const;
-    size_t WritableBytes() const; 
+    size_t WritableBytes() const;
     size_t PrependableBytes() const;
 
     const char* Peek() const;
@@ -47,4 +47,4 @@ private:
     std::atomic<std::size_t> writePos_;
 };
 
-#endif //BUFFER_H
+#endif
