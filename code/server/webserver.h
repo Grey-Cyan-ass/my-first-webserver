@@ -52,3 +52,6 @@ private:
 
     int port_;
     bool openLinger_;
+};
+
+#endif

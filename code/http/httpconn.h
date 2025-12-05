@@ -49,6 +49,8 @@ public:
     static const char* srcDir;
     static std::atomic<int> userCount;
 
+    
+
 private:
     int fd_;
     struct  sockaddr_in addr_;
