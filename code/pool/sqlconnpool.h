@@ -2,24 +2,30 @@
 #define SQLCONNPOOL_H
 
 #include <mysql/mysql.h>
-#include <string>
-#include <queue>
-#include <mutex>
 #include <semaphore.h>
+
+#include <mutex>
+#include <queue>
+#include <string>
 #include <thread>
+
 #include "../log/log.h"
 
 class SqlConnPool {
 public:
     static SqlConnPool *Instance();
 
+    void Init(const char *host = "127.0.0.1",
+                       int port = 3306,
+                       const char *user = "web_user",
+                       const char *pwd = "abc12345",
+                       const char *dbName = "webserver",
+                       int connSize = 10);
+
     MYSQL *GetConn();
-    void FreeConn(MYSQL * conn);
+    void FreeConn(MYSQL *conn);
     int GetFreeConnCount();
 
-    void Init(const char* host, int port,
-              const char* user,const char* pwd,
-              const char* dbName, int connSize);
     void ClosePool();
 
 private:
@@ -34,6 +40,5 @@ private:
     std::mutex mtx_;
     sem_t semId_;
 };
-
 
 #endif

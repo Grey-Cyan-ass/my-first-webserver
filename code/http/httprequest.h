@@ -1,17 +1,16 @@
 #ifndef HTTP_REQUEST_H
 #define HTTP_REQUEST_H
 
-#include <unordered_map>
-#include <unordered_set>
-#include <string>
-#include <regex>
 #include <errno.h>
 #include <mysql/mysql.h>
-
+#include <regex>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
 #include "../buffer/buffer.h"
 #include "../log/log.h"
-#include "../pool/sqlconnpool.h"
 #include "../pool/sqlconnRAII.h"
+#include "../pool/sqlconnpool.h"
 
 class HttpRequest {
 public:
@@ -57,7 +56,9 @@ private:
     void ParsePost_();
     void ParseFromUrlencoded_();
 
-    static bool UserVerify(const std::string& name, const std::string& pwd, bool isLogin);
+    static bool UserVerify(const std::string& name,
+                           const std::string& pwd,
+                           bool isLogin);
 
     PARSE_STATE state_;
     std::string method_, path_, version_, body_;
@@ -65,9 +66,9 @@ private:
     std::unordered_map<std::string, std::string> post_;
 
     static const std::unordered_set<std::string> DEFAULT_HTML;
-    static const std::unordered_map<std::string, int> DEFAULT_HTML_TAG;
+    static const std::unordered_map<std::string, int>
+        DEFAULT_HTML_TAG;
     static int ConverHex(char ch);
 };
-
 
 #endif

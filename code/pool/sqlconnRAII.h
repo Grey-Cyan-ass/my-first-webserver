@@ -2,6 +2,8 @@
 #define SQLCONNRAII_H
 #include "sqlconnpool.h"
 
+//外部获取连接正规方式就是通过 SqlConnRAII
+// 几乎不会直接调用 SqlConnPool::GetConn()
 class SqlConnRAII {
 public:
     SqlConnRAII(MYSQL** sql, SqlConnPool *connpool) {
