@@ -18,10 +18,11 @@ public:
                 std::unique_lock<std::mutex> locker(pool->mtx);
                 while (true) {
                     if (!pool->tasks.empty()) {
+                        //把tasks最前面的任务赋值给task
                         auto task = std::move(pool->tasks.front());
                         pool->tasks.pop();
                         locker.unlock();
-                        task();
+                        task();//做任务
                         locker.lock();
                     } else if (pool->isClosed)
                         break;

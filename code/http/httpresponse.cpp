@@ -3,71 +3,76 @@
 using namespace std;
 
 const unordered_map<string, string> HttpResponse::SUFFIX_TYPE = {
-    { ".html",  "text/html" },
-    { ".xml",   "text/xml" },
-    { ".xhtml", "application/xhtml+xml" },
-    { ".txt",   "text/plain" },
-    { ".rtf",   "application/rtf" },
-    { ".pdf",   "application/pdf" },
-    { ".word",  "application/nsword" },
-    { ".png",   "image/png" },
-    { ".gif",   "image/gif" },
-    { ".jpg",   "image/jpeg" },
-    { ".jpeg",  "image/jpeg" },
-    { ".au",    "audio/basic" },
-    { ".mpeg",  "video/mpeg" },
-    { ".mpg",   "video/mpeg" },
-    { ".avi",   "video/x-msvideo" },
-    { ".gz",    "application/x-gzip" },
-    { ".tar",   "application/x-tar" },
-    { ".css",   "text/css "},
-    { ".js",    "text/javascript "},
+    {".html", "text/html"},
+    {".xml", "text/xml"},
+    {".xhtml", "application/xhtml+xml"},
+    {".txt", "text/plain"},
+    {".rtf", "application/rtf"},
+    {".pdf", "application/pdf"},
+    {".word", "application/nsword"},
+    {".png", "image/png"},
+    {".gif", "image/gif"},
+    {".jpg", "image/jpeg"},
+    {".jpeg", "image/jpeg"},
+    {".au", "audio/basic"},
+    {".mpeg", "video/mpeg"},
+    {".mpg", "video/mpeg"},
+    {".avi", "video/x-msvideo"},
+    {".gz", "application/x-gzip"},
+    {".tar", "application/x-tar"},
+    {".css", "text/css "},
+    {".js", "text/javascript "},
 };
 
 const unordered_map<int, string> HttpResponse::CODE_STATUS = {
-    { 200, "OK" },
-    { 400, "Bad Request" },
-    { 403, "Forbidden" },
-    { 404, "Not Found" },
+    {200, "OK"},
+    {400, "Bad Request"},
+    {403, "Forbidden"},
+    {404, "Not Found"},
 };
 
 const unordered_map<int, string> HttpResponse::CODE_PATH = {
-    { 400, "/400.html" },
-    { 403, "/403.html" },
-    { 404, "/404.html" },
+    {400, "/400.html"},
+    {403, "/403.html"},
+    {404, "/404.html"},
 };
 
 HttpResponse::HttpResponse() {
     code_ = -1;
     path_ = srcDir_ = "";
     isKeepAlive_ = false;
-    mmFile_ = nullptr;
-    mmFileStat_ = { 0 };
+    mmFile_ = nullptr;//指向存储文件的指针
+    mmFileStat_ = {0};//存储文件的状态
 };
 
 HttpResponse::~HttpResponse() {
     UnmapFile();
 }
 
-void HttpResponse::Init(const string& srcDir, string& path, bool isKeepAlive, int code){
+void HttpResponse::Init(const string& srcDir,
+                        string& path,
+                        bool isKeepAlive,
+                        int code) {
     assert(srcDir != "");
-    if(mmFile_) { UnmapFile(); }
+    if (mmFile_) {
+        UnmapFile();
+    }
     code_ = code;
     isKeepAlive_ = isKeepAlive;
     path_ = path;
     srcDir_ = srcDir;
     mmFile_ = nullptr;
-    mmFileStat_ = { 0 };
+    mmFileStat_ = {0};
 }
 
 void HttpResponse::MakeResponse(Buffer& buff) {
-    if(stat((srcDir_ + path_).data(), &mmFileStat_) < 0 || S_ISDIR(mmFileStat_.st_mode)) {
+    //data()转化为C风格字符串,S_ISDIR()表示是否是目录
+    if (stat((srcDir_ + path_).data(), &mmFileStat_) < 0 ||
+        S_ISDIR(mmFileStat_.st_mode)) {
         code_ = 404;
-    }
-    else if(!(mmFileStat_.st_mode & S_IROTH)) {
+    } else if (!(mmFileStat_.st_mode & S_IROTH)) {//没有访问权限
         code_ = 403;
-    }
-    else if(code_ == -1) {
+    } else if (code_ == -1) {
         code_ = 200;
     }
     ErrorHtml_();
@@ -85,7 +90,8 @@ size_t HttpResponse::FileLen() const {
 }
 
 void HttpResponse::ErrorHtml_() {
-    if(CODE_PATH.count(code_) == 1) {
+    //CODE_PATH里没有200,只有错误码,所以正确响应不会触发这个函数
+    if (CODE_PATH.count(code_) == 1) {
         path_ = CODE_PATH.find(code_)->second;
         stat((srcDir_ + path_).data(), &mmFileStat_);
     }
@@ -93,22 +99,23 @@ void HttpResponse::ErrorHtml_() {
 
 void HttpResponse::AddStateLine_(Buffer& buff) {
     string status;
-    if(CODE_STATUS.count(code_) == 1) {
+    if (CODE_STATUS.count(code_) == 1) {//找到了直接转页面
         status = CODE_STATUS.find(code_)->second;
-    }
-    else {
+    } else {//找不到统一400Bad Request处理
         code_ = 400;
         status = CODE_STATUS.find(400)->second;
     }
-    buff.Append("HTTP/1.1 " + to_string(code_) + " " + status + "\r\n");
+    //to_string转化为字符串
+    buff.Append("HTTP/1.1 " + to_string(code_) + " " + status +
+                "\r\n");
 }
 
 void HttpResponse::AddHeader_(Buffer& buff) {
     buff.Append("Connection: ");
-    if(isKeepAlive_) {
+    if (isKeepAlive_) {
         buff.Append("keep-alive\r\n");
-        buff.Append("keep-alive: max=6, timeout=120\r\n");
-    } else{
+        buff.Append("keep-alive: max=6, timeout=60\r\n");
+    } else {
         buff.Append("close\r\n");
     }
     buff.Append("Content-type: " + GetFileType_() + "\r\n");
@@ -116,56 +123,60 @@ void HttpResponse::AddHeader_(Buffer& buff) {
 
 void HttpResponse::AddContent_(Buffer& buff) {
     int srcFd = open((srcDir_ + path_).data(), O_RDONLY);
-    if(srcFd < 0) {
+    if (srcFd < 0) {
         ErrorContent(buff, "File NotFound!");
         return;
     }
-
     LOG_DEBUG("file path %s", (srcDir_ + path_).data());
-    int* mmRet = (int*)mmap(0, mmFileStat_.st_size, PROT_READ, MAP_PRIVATE, srcFd, 0);
-    if(*mmRet == -1) {
+    //将文件内容映射到内存中，后续可以通过指针 mmFile_ 直接访问文件数据
+    int* mmRet = (int*)mmap(
+        0, mmFileStat_.st_size, PROT_READ, MAP_PRIVATE, srcFd, 0);
+    if (*mmRet == -1) {
         ErrorContent(buff, "File NotFound!");
         return;
     }
     mmFile_ = (char*)mmRet;
     close(srcFd);
-    buff.Append("Content-length: " + to_string(mmFileStat_.st_size) + "\r\n\r\n");
+    buff.Append("Content-length: " + to_string(mmFileStat_.st_size) +
+                "\r\n\r\n");
 }
 
-void HttpResponse::UnmapFile() {
-    if(mmFile_) {
+void HttpResponse::UnmapFile() {//解除内存映射文件的映射
+    if (mmFile_) {//如果指针指向不为空
+        //释放从 mmFile_ 开始，长度为 mmFileStat_.st_size 字节的内存映射区域
         munmap(mmFile_, mmFileStat_.st_size);
         mmFile_ = nullptr;
     }
 }
 
 string HttpResponse::GetFileType_() {
+    //查找路径中最后一个点（.）的位置
     string::size_type idx = path_.find_last_of('.');
-    if(idx == string::npos) {
+    if (idx == string::npos) {//返回了npos,表示没找到
         return "text/plain";
     }
     string suffix = path_.substr(idx);
-    if(SUFFIX_TYPE.count(suffix) == 1) {
+    if (SUFFIX_TYPE.count(suffix) == 1) {
         return SUFFIX_TYPE.find(suffix)->second;
     }
     return "text/plain";
 }
 
-void HttpResponse::ErrorContent(Buffer& buff, string message)
-{
+void HttpResponse::ErrorContent(Buffer& buff, string message) {
     string body;
     string status;
     body += "<html><title>Error</title>";
     body += "<body bgcolor=\"ffffff\">";
-    if(CODE_STATUS.count(code_) == 1) {
+    if (CODE_STATUS.count(code_) == 1) {
         status = CODE_STATUS.find(code_)->second;
     } else {
         status = "Bad Request";
     }
-    body += to_string(code_) + " : " + status  + "\n";
+    body += to_string(code_) + " : " + status + "\n";
     body += "<p>" + message + "</p>";
     body += "<hr><em>TinyWebServer</em></body></html>";
 
-    buff.Append("Content-length: " + to_string(body.size()) + "\r\n\r\n");
+    buff.Append("Content-length: " + to_string(body.size()) +
+                "\r\n\r\n");
     buff.Append(body);
 }

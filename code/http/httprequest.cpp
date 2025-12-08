@@ -17,7 +17,7 @@ const unordered_map<string, int> HttpRequest::DEFAULT_HTML_TAG{
 
 void HttpRequest::Init() {
     method_ = path_ = version_ = body_ = "";
-    state_ = REQUEST_LINE;
+    state_ = REQUEST_LINE;  // state_固定设定为请求头(第一个state_)
     header_.clear();
     post_.clear();
 }
@@ -30,16 +30,16 @@ bool HttpRequest::IsKeepAlive() const {
     return false;
 }
 
-bool HttpRequest::parse(Buffer& buff) {
-    const char CRLF[] = "\r\n";
+bool HttpRequest::parse(Buffer& buff) {  // 解析请求行
+    const char CRLF[] = "\r\n";          // 定义一个换行符
     if (buff.ReadableBytes() <= 0) {
         return false;
     }
     while (buff.ReadableBytes() && state_ != FINISH) {
         const char* lineEnd = search(
             buff.Peek(), buff.BeginWriteConst(), CRLF, CRLF + 2);
-        std::string line(buff.Peek(), lineEnd);
-        switch (state_) {
+        std::string line(buff.Peek(), lineEnd);  // 提取这一行
+        switch (state_) {                        // 解析对应的行
             case REQUEST_LINE:
                 if (!ParseRequestLine_(line)) {
                     return false;
@@ -61,7 +61,7 @@ bool HttpRequest::parse(Buffer& buff) {
         if (lineEnd == buff.BeginWrite()) {
             break;
         }
-        buff.RetrieveUntil(lineEnd + 2);
+        buff.RetrieveUntil(lineEnd + 2);  // peek指针后移
     }
     LOG_DEBUG("[%s], [%s], [%s]",
               method_.c_str(),
@@ -87,10 +87,11 @@ bool HttpRequest::ParseRequestLine_(const string& line) {
     regex patten("^([^ ]*) ([^ ]*) HTTP/([^ ]*)$");
     smatch subMatch;
     if (regex_match(line, subMatch, patten)) {
+        // 解析出三个变量
         method_ = subMatch[1];
         path_ = subMatch[2];
         version_ = subMatch[3];
-        state_ = HEADERS;
+        state_ = HEADERS;  // 把state往下移一位
         return true;
     }
     LOG_ERROR("RequestLine Error");
@@ -100,6 +101,7 @@ bool HttpRequest::ParseRequestLine_(const string& line) {
 void HttpRequest::ParseHeader_(const string& line) {
     regex patten("^([^:]*): ?(.*)$");
     smatch subMatch;
+    // 要匹配的文本,存储的对象,匹配的格式
     if (regex_match(line, subMatch, patten)) {
         header_[subMatch[1]] = subMatch[2];
     } else {
@@ -109,7 +111,7 @@ void HttpRequest::ParseHeader_(const string& line) {
 
 void HttpRequest::ParseBody_(const string& line) {
     body_ = line;
-    ParsePost_();
+    ParsePost_();//解析body(本项目body只会在登录或者注册状态下携带用户名和密码)
     state_ = FINISH;
     LOG_DEBUG("Body:%s, len:%d", line.c_str(), line.size());
 }
@@ -123,16 +125,16 @@ int HttpRequest::ConverHex(char ch) {
 }
 
 void HttpRequest::ParsePost_() {
-    if (method_ == "POST" &&
+    if (method_ == "POST" &&//如果是登录或者注册
         header_["Content-Type"] ==
             "application/x-www-form-urlencoded") {
-        ParseFromUrlencoded_();
-        if (DEFAULT_HTML_TAG.count(path_)) {
+        ParseFromUrlencoded_();//把body解析出来
+        if (DEFAULT_HTML_TAG.count(path_)) {//找到当前页面对应的tag
             int tag = DEFAULT_HTML_TAG.find(path_)->second;
             LOG_DEBUG("Tag:%d", tag);
             if (tag == 0 || tag == 1) {
-                bool isLogin = (tag == 1);
-                if (UserVerify(post_["username"],
+                bool isLogin = (tag == 1);//isLogin赋值为是否登录
+                if (UserVerify(post_["username"],//进行注册或登录
                                post_["password"],
                                isLogin)) {
                     path_ = "/welcome.html";
@@ -144,6 +146,7 @@ void HttpRequest::ParsePost_() {
     }
 }
 
+//把body(即username和password解析出来)
 void HttpRequest::ParseFromUrlencoded_() {
     if (body_.size() == 0) {
         return;
@@ -156,33 +159,40 @@ void HttpRequest::ParseFromUrlencoded_() {
 
     for (; i < n; i++) {
         char ch = body_[i];
+        // 假设username=grey&password=123%41
         switch (ch) {
             case '=':
+                // key = username
                 key = body_.substr(j, i - j);
                 j = i + 1;
                 break;
+            case '&':
+            //value = grey
+                value = body_.substr(j, i - j);
+                j = i + 1;
+                post_[key] = value;//键值对存进post_里面
+                LOG_DEBUG("%s = %s", key.c_str(), value.c_str());
+                break;
             case '+':
+            //把+变空格
                 body_[i] = ' ';
                 break;
             case '%':
+                // 处理16进制.把%41转换成A
                 num = ConverHex(body_[i + 1]) * 16 +
                       ConverHex(body_[i + 2]);
                 body_[i + 2] = num % 10 + '0';
                 body_[i + 1] = num / 10 + '0';
                 i += 2;
                 break;
-            case '&':
-                value = body_.substr(j, i - j);
-                j = i + 1;
-                post_[key] = value;
-                LOG_DEBUG("%s = %s", key.c_str(), value.c_str());
-                break;
+
             default:
                 break;
         }
     }
     assert(j <= i);
-    if (post_.count(key) == 0 && j < i) {
+    //由于password=123%41(实际上已经变成了123A,因为已经全部遍历过了)没有&来触发,所以得手动保存
+    if (post_.count(key) == 0 && j < i) {//看看post里面是否已经保存了这个key
         value = body_.substr(j, i - j);
         post_[key] = value;
     }
@@ -205,42 +215,45 @@ bool HttpRequest::UserVerify(const string& name,
     MYSQL_FIELD* fields = nullptr;
     MYSQL_RES* res = nullptr;
 
-    if (!isLogin) {
-        flag = true;
+    if (!isLogin) {//注册状态
+        flag = true;//允许注册
     }
+    //将格式化的 SQL 查询语句写入 order 数组
     snprintf(order,
              256,
              "SELECT username, password FROM user WHERE "
              "username='%s' LIMIT 1",
              name.c_str());
     LOG_DEBUG("%s", order);
-
+    
+    //mysql_query非0,执行失败(表示程序出错了,不是代表没查到)
     if (mysql_query(sql, order)) {
-        mysql_free_result(res);
         return false;
     }
+    
+    //结果存放进res,如果没有查到用户名,res里存放的就是空集
     res = mysql_store_result(sql);
-    j = mysql_num_fields(res);
-    fields = mysql_fetch_fields(res);
+    j = mysql_num_fields(res);//获取字段的数量(username和password,一般为2)
+    fields = mysql_fetch_fields(res);//获取所有字段的详细信息
 
-    while (MYSQL_ROW row = mysql_fetch_row(res)) {
+    while (MYSQL_ROW row = mysql_fetch_row(res)) {//取一行数据
         LOG_DEBUG("MYSQL ROW: %s %s", row[0], row[1]);
-        string password(row[1]);
-        if (isLogin) {
-            if (pwd == password) {
+        string password(row[1]);//row1赋值给password
+        if (isLogin) {//如果是登录状态
+            if (pwd == password) {//密码正确,允许登录
                 flag = true;
-            } else {
+            } else {//密码错误,报错
                 flag = false;
                 LOG_DEBUG("pwd error!");
             }
-        } else {
+        } else {//不是登录状态,即注册,这种情况下在数据库里找到了用户名,说明用户名已被使用
             flag = false;
             LOG_DEBUG("user used!");
         }
     }
     mysql_free_result(res);
 
-    if (!isLogin && flag == true) {
+    if (!isLogin && flag == true) {//允许注册,进行注册
         LOG_DEBUG("regirster!");
         bzero(order, 256);
         snprintf(
@@ -250,7 +263,7 @@ bool HttpRequest::UserVerify(const string& name,
             name.c_str(),
             pwd.c_str());
         LOG_DEBUG("%s", order);
-        if (mysql_query(sql, order)) {
+        if (mysql_query(sql, order)) {//写入失败
             LOG_DEBUG("Insert error!");
             flag = false;
         }
