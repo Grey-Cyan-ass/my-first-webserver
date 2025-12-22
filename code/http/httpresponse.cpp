@@ -107,7 +107,7 @@ void HttpResponse::AddStateLine_(Buffer& buff) {
     }
     //to_string转化为字符串
     buff.Append("HTTP/1.1 " + to_string(code_) + " " + status +
-                "\r\n");
+                "\r\n");//强制使用1.1版本号 
 }
 
 void HttpResponse::AddHeader_(Buffer& buff) {
