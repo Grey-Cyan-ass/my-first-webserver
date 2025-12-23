@@ -1,0 +1,246 @@
+2025-12-23 14:38:52.275114 [info] : ========== Server init ==========
+2025-12-23 14:38:52.275168 [info] : Port:1316, OpenLinger: false
+2025-12-23 14:38:52.275179 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 14:38:52.275183 [info] : LogSys level: 1
+2025-12-23 14:38:52.275187 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 14:38:52.275191 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 14:38:52.275348 [info] : ========== Server start ==========
+2025-12-23 14:40:37.179070 [info] : ========== Server init ==========
+2025-12-23 14:40:37.179100 [info] : Port:1316, OpenLinger: false
+2025-12-23 14:40:37.179109 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 14:40:37.179241 [info] : LogSys level: 1
+2025-12-23 14:40:37.179250 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 14:40:37.179253 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 14:40:37.179255 [info] : ========== Server start ==========
+2025-12-23 14:42:27.941116 [info] : ========== Server init ==========
+2025-12-23 14:42:27.941164 [info] : Port:1316, OpenLinger: false
+2025-12-23 14:42:27.941396 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 14:42:27.941410 [info] : LogSys level: 1
+2025-12-23 14:42:27.941415 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 14:42:27.941629 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 14:42:27.941699 [info] : ========== Server start ==========
+2025-12-23 14:42:57.631875 [info] : ========== Server init ==========
+2025-12-23 14:42:57.631907 [info] : Port:1316, OpenLinger: false
+2025-12-23 14:42:57.631913 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 14:42:57.631916 [info] : LogSys level: 1
+2025-12-23 14:42:57.631918 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 14:42:57.631921 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 14:42:57.631923 [info] : ========== Server start ==========
+2025-12-23 14:44:06.751360 [info] : ========== Server init ==========
+2025-12-23 14:44:06.751387 [info] : Port:1316, OpenLinger: false
+2025-12-23 14:44:06.751394 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 14:44:06.751397 [info] : LogSys level: 1
+2025-12-23 14:44:06.751400 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 14:44:06.751402 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 14:44:06.751404 [info] : ========== Server start ==========
+2025-12-23 14:46:46.271893 [info] : ========== Server init ==========
+2025-12-23 14:46:46.271925 [info] : Port:1316, OpenLinger: false
+2025-12-23 14:46:46.271934 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 14:46:46.271937 [info] : LogSys level: 1
+2025-12-23 14:46:46.271939 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 14:46:46.271942 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 14:46:46.271944 [info] : ========== Server start ==========
+2025-12-23 14:46:50.791061 [info] : Client[6](127.0.0.1:31430) in, userCount:1
+2025-12-23 14:46:50.792113 [info] : Client[6] in!
+2025-12-23 14:46:50.792507 [info] : Client[7](127.0.0.1:24800) in, userCount:2
+2025-12-23 14:46:50.792948 [info] : Client[7] in!
+2025-12-23 14:46:51.022091 [info] : Client[8](127.0.0.1:38634) in, userCount:3
+2025-12-23 14:46:51.023015 [info] : Client[8] in!
+2025-12-23 14:46:51.164688 [info] : Client[9](127.0.0.1:59337) in, userCount:4
+2025-12-23 14:46:51.165659 [info] : Client[9] in!
+2025-12-23 14:46:51.168181 [info] : Client[10](127.0.0.1:51139) in, userCount:5
+2025-12-23 14:46:51.168637 [info] : Client[10] in!
+2025-12-23 14:46:51.170307 [info] : Client[11](127.0.0.1:58591) in, userCount:6
+2025-12-23 14:46:51.170731 [info] : Client[11] in!
+2025-12-23 14:48:30.730995 [info] : Client[9] quit!
+2025-12-23 14:48:30.731188 [info] : Client[9](127.0.0.1:59337) quit, UserCount:5
+2025-12-23 14:48:30.731351 [info] : Client[7] quit!
+2025-12-23 14:48:30.731501 [info] : Client[7](127.0.0.1:24800) quit, UserCount:4
+2025-12-23 14:48:30.731573 [info] : Client[6] quit!
+2025-12-23 14:48:30.731729 [info] : Client[6](127.0.0.1:31430) quit, UserCount:3
+2025-12-23 14:48:30.731872 [info] : Client[11] quit!
+2025-12-23 14:48:30.732094 [info] : Client[11](127.0.0.1:58591) quit, UserCount:2
+2025-12-23 14:48:30.732346 [info] : Client[10] quit!
+2025-12-23 14:48:30.732489 [info] : Client[10](127.0.0.1:51139) quit, UserCount:1
+2025-12-23 14:48:30.732632 [info] : Client[8] quit!
+2025-12-23 14:48:30.732762 [info] : Client[8](127.0.0.1:38634) quit, UserCount:0
+2025-12-23 14:48:47.357524 [info] : Client[6](127.0.0.1:21195) in, userCount:1
+2025-12-23 14:48:47.357777 [info] : Client[6] in!
+2025-12-23 14:48:47.359100 [info] : Client[7](127.0.0.1:4859) in, userCount:2
+2025-12-23 14:48:47.359665 [info] : Client[7] in!
+2025-12-23 14:52:45.026636 [info] : ========== Server init ==========
+2025-12-23 14:52:45.026674 [info] : Port:1316, OpenLinger: false
+2025-12-23 14:52:45.026683 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 14:52:45.026686 [info] : LogSys level: 1
+2025-12-23 14:52:45.026690 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 14:52:45.026693 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 14:52:45.026696 [info] : ========== Server start ==========
+2025-12-23 14:52:49.949133 [info] : Client[6](127.0.0.1:59127) in, userCount:1
+2025-12-23 14:52:49.949597 [info] : Client[6] in!
+2025-12-23 14:52:49.951628 [info] : Client[7](127.0.0.1:39891) in, userCount:2
+2025-12-23 14:52:49.952148 [info] : Client[7] in!
+2025-12-23 14:52:50.179281 [info] : Client[8](127.0.0.1:51680) in, userCount:3
+2025-12-23 14:52:50.179590 [info] : Client[8] in!
+2025-12-23 14:52:50.312553 [info] : Client[9](127.0.0.1:12029) in, userCount:4
+2025-12-23 14:52:50.313209 [info] : Client[9] in!
+2025-12-23 14:52:50.313634 [info] : Client[10](127.0.0.1:13805) in, userCount:5
+2025-12-23 14:52:50.314610 [info] : Client[10] in!
+2025-12-23 14:52:50.315145 [info] : Client[11](127.0.0.1:56575) in, userCount:6
+2025-12-23 14:52:50.315592 [info] : Client[11] in!
+2025-12-23 14:56:31.532373 [info] : ========== Server init ==========
+2025-12-23 14:56:31.532420 [info] : Port:1316, OpenLinger: false
+2025-12-23 14:56:31.532429 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 14:56:31.532433 [info] : LogSys level: 1
+2025-12-23 14:56:31.532436 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 14:56:31.532439 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 14:56:31.532442 [info] : ========== Server start ==========
+2025-12-23 14:56:34.415786 [info] : Client[6](127.0.0.1:28098) in, userCount:1
+2025-12-23 14:56:34.416121 [info] : Client[6] in!
+2025-12-23 14:56:34.416294 [info] : Client[7](127.0.0.1:23003) in, userCount:2
+2025-12-23 14:56:34.416447 [info] : Client[7] in!
+2025-12-23 14:56:34.644854 [info] : Client[8](127.0.0.1:987) in, userCount:3
+2025-12-23 14:56:34.645032 [info] : Client[8] in!
+2025-12-23 14:56:34.795959 [info] : Client[9](127.0.0.1:28409) in, userCount:4
+2025-12-23 14:56:34.796629 [info] : Client[9] in!
+2025-12-23 14:56:34.798914 [info] : Client[10](127.0.0.1:39923) in, userCount:5
+2025-12-23 14:56:34.799248 [info] : Client[10] in!
+2025-12-23 14:56:34.799365 [info] : Client[11](127.0.0.1:6341) in, userCount:6
+2025-12-23 14:56:34.799464 [info] : Client[11] in!
+2025-12-23 15:12:32.181413 [info] : ========== Server init ==========
+2025-12-23 15:12:32.181429 [info] : Port:1316, OpenLinger: false
+2025-12-23 15:12:32.181434 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 15:12:32.181438 [info] : LogSys level: 1
+2025-12-23 15:12:32.181442 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 15:12:32.181445 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 15:12:32.181449 [info] : ========== Server start ==========
+2025-12-23 15:12:32.378805 [info] : Client[18](127.0.0.1:21229) in, userCount:1
+2025-12-23 15:12:32.378932 [info] : Client[18] in!
+2025-12-23 15:12:38.147043 [info] : Verify name:2470615700 pwd:Cmy20020420%„9
+2025-12-23 15:12:38.149087 [error]: RequestLine Error
+2025-12-23 15:12:38.149497 [info] : Client[18] quit!
+2025-12-23 15:12:38.149739 [info] : Client[18](127.0.0.1:21229) quit, UserCount:0
+2025-12-23 15:12:38.427618 [info] : Client[18](127.0.0.1:8159) in, userCount:1
+2025-12-23 15:12:38.427800 [info] : Client[18] in!
+2025-12-23 15:12:38.493188 [info] : Client[19](127.0.0.1:24809) in, userCount:2
+2025-12-23 15:12:38.493395 [info] : Client[19] in!
+2025-12-23 15:12:38.493919 [info] : Client[20](127.0.0.1:10195) in, userCount:3
+2025-12-23 15:12:38.494030 [info] : Client[20] in!
+2025-12-23 15:12:38.494662 [info] : Client[21](127.0.0.1:1257) in, userCount:4
+2025-12-23 15:12:38.494824 [info] : Client[21] in!
+2025-12-23 15:12:38.495323 [info] : Client[25](127.0.0.1:10180) in, userCount:5
+2025-12-23 15:12:38.495480 [info] : Client[25] in!
+2025-12-23 15:12:38.496790 [info] : Client[26](127.0.0.1:53980) in, userCount:6
+2025-12-23 15:12:38.496911 [info] : Client[26] in!
+2025-12-23 15:12:42.686743 [info] : Verify name:2470615700 pwd:Cmy20020420%„9
+2025-12-23 15:12:42.688409 [error]: RequestLine Error
+2025-12-23 15:12:42.688806 [info] : Client[19] quit!
+2025-12-23 15:12:42.689040 [info] : Client[19](127.0.0.1:24809) quit, UserCount:5
+2025-12-23 15:12:43.038257 [info] : Client[19](127.0.0.1:25312) in, userCount:6
+2025-12-23 15:12:43.038546 [info] : Client[19] in!
+2025-12-23 15:12:46.200120 [info] : Verify name:2470615700 pwd:Cmy20020420%„9
+2025-12-23 15:12:46.201340 [error]: RequestLine Error
+2025-12-23 15:12:46.201827 [info] : Client[18] quit!
+2025-12-23 15:12:46.201989 [info] : Client[18](127.0.0.1:8159) quit, UserCount:5
+2025-12-23 15:12:46.522650 [info] : Client[18](127.0.0.1:24786) in, userCount:6
+2025-12-23 15:12:46.522849 [info] : Client[18] in!
+2025-12-23 15:12:55.825336 [info] : Verify name:2470615700 pwd:Cmy20020420%„9
+2025-12-23 15:12:55.827497 [error]: RequestLine Error
+2025-12-23 15:12:55.827807 [info] : Client[26] quit!
+2025-12-23 15:12:55.827942 [info] : Client[26](127.0.0.1:53980) quit, UserCount:5
+2025-12-23 15:12:56.168758 [info] : Client[26](127.0.0.1:54211) in, userCount:6
+2025-12-23 15:12:56.169399 [info] : Client[26] in!
+2025-12-23 15:13:06.280045 [info] : Verify name:123456 pwd:123456
+2025-12-23 15:13:06.287636 [error]: RequestLine Error
+2025-12-23 15:13:06.288029 [info] : Client[25] quit!
+2025-12-23 15:13:06.288254 [info] : Client[25](127.0.0.1:10180) quit, UserCount:5
+2025-12-23 15:13:06.605968 [info] : Client[25](127.0.0.1:52206) in, userCount:6
+2025-12-23 15:13:06.606284 [info] : Client[25] in!
+2025-12-23 15:13:19.620757 [info] : Verify name:123456 pwd:123456
+2025-12-23 15:13:19.621993 [error]: RequestLine Error
+2025-12-23 15:13:19.622285 [info] : Client[19] quit!
+2025-12-23 15:13:19.622478 [info] : Client[19](127.0.0.1:25312) quit, UserCount:5
+2025-12-23 15:13:19.944643 [info] : Client[19](127.0.0.1:10194) in, userCount:6
+2025-12-23 15:15:05.120587 [info] : ========== Server init ==========
+2025-12-23 15:15:05.120621 [info] : Port:1316, OpenLinger: false
+2025-12-23 15:15:05.120629 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 15:15:05.120632 [info] : LogSys level: 1
+2025-12-23 15:15:05.120635 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 15:15:05.120638 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 15:15:05.120640 [info] : ========== Server start ==========
+2025-12-23 15:15:09.994074 [info] : Client[18](127.0.0.1:13540) in, userCount:1
+2025-12-23 15:15:09.994194 [info] : Client[18] in!
+2025-12-23 15:15:09.995114 [info] : Verify name:123456 pwd:123456
+2025-12-23 15:15:09.995811 [error]: RequestLine Error
+2025-12-23 15:15:09.996037 [info] : Client[18] quit!
+2025-12-23 15:15:09.996194 [info] : Client[18](127.0.0.1:13540) quit, UserCount:0
+2025-12-23 15:15:09.998039 [info] : Client[18](127.0.0.1:57547) in, userCount:1
+2025-12-23 15:15:09.998276 [info] : Client[18] in!
+2025-12-23 15:15:10.227141 [info] : Client[19](127.0.0.1:35284) in, userCount:2
+2025-12-23 15:15:10.227467 [info] : Client[19] in!
+2025-12-23 15:15:10.309042 [info] : Client[20](127.0.0.1:39651) in, userCount:3
+2025-12-23 15:15:10.309523 [info] : Client[20] in!
+2025-12-23 15:15:10.312537 [info] : Client[21](127.0.0.1:50393) in, userCount:4
+2025-12-23 15:15:10.313102 [info] : Client[21] in!
+2025-12-23 15:15:10.313724 [info] : Client[25](127.0.0.1:12230) in, userCount:5
+2025-12-23 15:15:10.314086 [info] : Client[25] in!
+2025-12-23 15:15:10.315330 [info] : Client[26](127.0.0.1:64976) in, userCount:6
+2025-12-23 15:15:10.315720 [info] : Client[26] in!
+2025-12-23 15:15:17.641293 [info] : Verify name:2470615700 pwd:Cmy20020420%„9
+2025-12-23 15:15:17.642609 [error]: RequestLine Error
+2025-12-23 15:15:17.642947 [info] : Client[25] quit!
+2025-12-23 15:15:17.643084 [info] : Client[25](127.0.0.1:12230) quit, UserCount:5
+2025-12-23 15:15:17.970659 [info] : Client[25](127.0.0.1:37851) in, userCount:6
+2025-12-23 15:15:17.971027 [info] : Client[25] in!
+2025-12-23 15:15:21.518561 [info] : Verify name:2470615700 pwd:Cmy20020420%„9
+2025-12-23 15:15:21.519472 [error]: RequestLine Error
+2025-12-23 15:15:21.519747 [info] : Client[26] quit!
+2025-12-23 15:15:21.519858 [info] : Client[26](127.0.0.1:64976) quit, UserCount:5
+2025-12-23 15:15:21.840421 [info] : Client[26](127.0.0.1:48836) in, userCount:6
+2025-12-23 15:18:04.411458 [info] : ========== Server init ==========
+2025-12-23 15:18:04.411500 [info] : Port:1316, OpenLinger: false
+2025-12-23 15:18:04.411631 [info] : Listen Mode: ET, OpenConn Mode: ET
+2025-12-23 15:18:04.411646 [info] : LogSys level: 1
+2025-12-23 15:18:04.411902 [info] : srcDir: /home/grey/my--webserver/resources/
+2025-12-23 15:18:04.411945 [info] : SqlConnPool num: 12, ThreadPool num: 6
+2025-12-23 15:18:04.411979 [info] : ========== Server start ==========
+2025-12-23 15:18:04.576149 [info] : Client[18](127.0.0.1:46569) in, userCount:1
+2025-12-23 15:18:04.576270 [info] : Client[18] in!
+2025-12-23 15:18:04.578039 [info] : Client[19](127.0.0.1:9695) in, userCount:2
+2025-12-23 15:18:04.578199 [info] : Client[19] in!
+2025-12-23 15:18:04.809778 [info] : Client[20](127.0.0.1:44799) in, userCount:3
+2025-12-23 15:18:04.809933 [info] : Client[20] in!
+2025-12-23 15:18:04.913506 [info] : Client[21](127.0.0.1:59588) in, userCount:4
+2025-12-23 15:18:04.914414 [info] : Client[21] in!
+2025-12-23 15:18:04.914848 [info] : Client[25](127.0.0.1:27594) in, userCount:5
+2025-12-23 15:18:04.915221 [info] : Client[25] in!
+2025-12-23 15:18:04.915575 [info] : Client[26](127.0.0.1:52457) in, userCount:6
+2025-12-23 15:18:04.916114 [info] : Client[26] in!
+2025-12-23 15:18:08.820138 [info] : Verify name:2470615700 pwd:Cmy20020420%„9
+2025-12-23 15:18:08.821801 [error]: RequestLine Error
+2025-12-23 15:18:08.822076 [info] : Client[26] quit!
+2025-12-23 15:18:08.822216 [info] : Client[26](127.0.0.1:52457) quit, UserCount:5
+2025-12-23 15:18:09.139561 [info] : Client[26](127.0.0.1:43481) in, userCount:6
+2025-12-23 15:18:09.139765 [info] : Client[26] in!
+2025-12-23 15:19:00.092169 [info] : Verify name:2470615700 pwd:cmy20020420
+2025-12-23 15:19:00.096931 [error]: RequestLine Error
+2025-12-23 15:19:00.097397 [info] : Client[18] quit!
+2025-12-23 15:19:00.097603 [info] : Client[18](127.0.0.1:46569) quit, UserCount:5
+2025-12-23 15:19:00.435091 [info] : Client[18](127.0.0.1:48629) in, userCount:6
+2025-12-23 15:19:00.435647 [info] : Client[18] in!
+2025-12-23 15:19:03.837914 [info] : Verify name:2470615700 pwd:cmy20020420
+2025-12-23 15:19:03.838839 [error]: RequestLine Error
+2025-12-23 15:19:03.839141 [info] : Client[20] quit!
+2025-12-23 15:19:03.839268 [info] : Client[20](127.0.0.1:44799) quit, UserCount:5
+2025-12-23 15:19:04.168359 [info] : Client[20](127.0.0.1:50371) in, userCount:6
+2025-12-23 15:19:04.168499 [info] : Client[20] in!
+2025-12-23 15:20:09.829705 [info] : Client[19] quit!
+2025-12-23 15:20:09.830209 [info] : Client[19](127.0.0.1:9695) quit, UserCount:5
+2025-12-23 15:20:09.830619 [info] : Client[25] quit!
+2025-12-23 15:20:09.831191 [info] : Client[25](127.0.0.1:27594) quit, UserCount:4
+2025-12-23 15:20:09.831625 [info] : Client[18] quit!
+2025-12-23 15:20:09.831853 [info] : Client[18](127.0.0.1:48629) quit, UserCount:3
+2025-12-23 15:20:09.832239 [info] : Client[26] quit!
+2025-12-23 15:20:09.832522 [info] : Client[26](127.0.0.1:43481) quit, UserCount:2
+2025-12-23 15:20:09.832644 [info] : Client[21] quit!
+2025-12-23 15:20:09.832777 [info] : Client[21](127.0.0.1:59588) quit, UserCount:1
+2025-12-23 15:20:09.833158 [info] : Client[20] quit!

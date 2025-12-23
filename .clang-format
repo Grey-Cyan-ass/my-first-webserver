@@ -1,17 +1,7 @@
 BasedOnStyle: Google
-IndentWidth: 4
-TabWidth: 4
-UseTab: Never
-ColumnLimit: 70
-AccessModifierOffset: -4
-BinPackArguments: false
-BinPackParameters: false
-PointerAlignment: Left
+IndentWidth: 2
+ColumnLimit: 100
 AllowShortIfStatementsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: InlineOnly
-SpaceBeforeParens: ControlStatements
-BraceWrapping:
-  AfterFunction: true
-  AfterControlStatement: false
-  BeforeElse: false
-  BeforeCatch: false
+AllowShortFunctionsOnASingleLine: Inline
+DerivePointerAlignment: false
+PointerAlignment: Left
